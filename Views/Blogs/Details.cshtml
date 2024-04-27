@@ -5,6 +5,220 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .profile-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-right: 10px;
+            position: relative;
+        }
+
+            .profile-circle img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+        .profile-circle1 {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-right: 10px;
+            position: relative;
+        }
+
+            .profile-circle1 img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+        .comment-box input {
+            resize: none;
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .vote-icons {
+            justify-content: flex-end;
+            margin-bottom: 5px;
+        }
+
+            .vote-icons i {
+                cursor: pointer;
+                margin-left: 10px;
+                color: grey;
+            }
+
+    </style>
+</head>
+<body>
+    <div class="container bg-white">
+        <h1>@Model.Title</h1>
+        <div class="d-flex flex-row align-items-center mb-3 mt-5">
+            <div class="profile-circle1 mb-2">
+                <img src="https://hips.hearstapps.com/hmg-prod/images/street-portrait-of-a-young-man-using-mobile-phone-royalty-free-image-1018047498-1564431457.jpg?crop=0.668xw:1.00xh;0.226xw,0&resize=640:*" alt="User Profile Image">
+            </div>
+            <div class="d-flex flex-column">
+                <h4 class="text" style="font-weight:bold">@Model.User.Username</h4>
+                <h5 class="text-muted">@Model.CreatedDate</h5>
+            </div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <br />
+        <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" alt="User Profile Image" />
+        <p>
+            @Model.Body
+        </p>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model?.BlogID">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+        <div class="dropdown-divider"></div>
+        <br />
+        <div class="col-md-6 mb-3" style="width:100%;">
+            <div class="card-header col bg-success">
+                <h3>
+                    Add Comment
+                </h3>
+            </div>
+            <br />
+            <div class="d-flex flex-row align-items-center mb-3 ms-1">
+
+                <div class="profile-circle mb-2">
+                    <img src="https://t4.ftcdn.net/jpg/03/98/85/77/360_F_398857704_n44BPhqM68Xk9vT31BeFkLQwWsgeZS6C.jpg" alt="User Profile Image">
+                </div>
+                <div class="comment-box" style="width:100%">
+                    <input class="form-control" placeholder="Write your comment here">
+                </div>
+
+            </div>
+            <div class="ms-2 mt-4">
+                <h4>Comments</h4>
+                <div class="dropdown-divider"></div>
+                <div class="d-flex flex-row mb-3 mt-3">
+                    <div class="profile-circle mb-2">
+                        <img src="https://hips.hearstapps.com/hmg-prod/images/street-portrait-of-a-young-man-using-mobile-phone-royalty-free-image-1018047498-1564431457.jpg?crop=0.668xw:1.00xh;0.226xw,0&resize=640:*" alt="User Profile Image">
+                    </div>
+                    <div class="d-flex flex-column ms-3">
+                        <small class="text mb-2" style="font-weight:bold">John Doe</small>
+                        <small class="text">Ipsum suspendisse ultrices gravida dictum fusce ut placerat orci nulla.</small>
+                        <div class="d-flex flex-row mt-2">
+                            <div class="vote-icons d-flex flex-row">
+                                <div class="upvote">
+                                    <i class="fa-solid fa-circle-arrow-up"></i>
+                                    <lable>100</lable> @* upvote count *@
+
+                                </div>
+                                <div class="downvote">
+                                    <i class="fa-solid fa-circle-arrow-down"></i>
+                                    <lable>100</lable> @* downvote count *@
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-row me-2">
+                            <div class="Edit me-3 ms-3">
+                                @* Show edit button only login blogger_id == comment blogger_id  *@
+                                <a href="#">
+                                    <label>Edit</label>
+                                </a>
+                            </div>
+                            <div class="Delete">
+                                @* Show delete button only login blogger_id == comment blogger_id  *@
+                                <a href="#">
+                                    <label>Delete</label>
+                                </a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+@*This is my design*@
+@* @model BisleriumBloggingWebApp.Models.Blog
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1 class="text-center mb-4">Blog Details</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">@Model.Title</h2>
+            <p class="text-muted">Posted on: @Model.CreatedDate.ToShortDateString()</p>
+            <hr>
+            @if (!string.IsNullOrEmpty(Model.ImagePath))
+            {
+                <div class="text-center">
+                    @* <img src="@Model.ImagePath" class="img-fluid" alt="Blog Image"> *@
+                    @* <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" class="img-fluid" alt="Blog Image">
+                </div>
+            }
+            <p class="card-text">@Model.Body</p>
+            <hr>
+            <p class="text-muted">Written by: @Model.User.Email</p>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a asp-action="Edit" asp-route-id="@Model?.BlogID" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div> *@
+
+
+
+
+@*This is default*@
+
+@* @model BisleriumBloggingWebApp.Models.Blog
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 <h1>Details</h1>
 
 <div>
@@ -47,3 +261,4 @@
     <a asp-action="Edit" asp-route-id="@Model?.BlogID">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+ *@
