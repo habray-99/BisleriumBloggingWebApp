@@ -18,6 +18,11 @@ namespace BisleriumBloggingWebApp.Controllers
             _context = context;
         }
 
+        //public IActionResult Details(int? id)
+        //{
+        //    return View();
+        //}
+
         // GET: Blogs
         public async Task<IActionResult> Index()
         {
