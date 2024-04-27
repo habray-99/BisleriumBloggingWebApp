@@ -6,6 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+/// for swagger UI config
+builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 
 //for defining my connection string
 var provider = builder.Services.BuildServiceProvider();
@@ -32,5 +38,9 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+// for enabling middleware to serve Swagger UI and JSON endpoints
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.Run();

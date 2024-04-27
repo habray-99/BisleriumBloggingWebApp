@@ -6,12 +6,21 @@ namespace BisleriumBloggingWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        //creating constructor
+        private readonly MyDbContext userDB;
+        public HomeController(MyDbContext userDB)
         {
-            _logger = logger;
+            this.userDB = userDB;
         }
+
+
+        //private readonly ILogger<HomeController> _logger;
+
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
 
         public IActionResult Index()
         {
