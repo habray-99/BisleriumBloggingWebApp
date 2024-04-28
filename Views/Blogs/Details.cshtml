@@ -119,55 +119,86 @@
                 <div class="profile-circle mb-2">
                     <img src="https://t4.ftcdn.net/jpg/03/98/85/77/360_F_398857704_n44BPhqM68Xk9vT31BeFkLQwWsgeZS6C.jpg" alt="User Profile Image">
                 </div>
-                <div class="comment-box" style="width:100%">
+                @* <div class="comment-box" style="width:100%">
                     <input class="form-control" placeholder="Write your comment here">
-                </div>
+                </div> *@
+
+                @*added from comment.cs*@
+                
+
+                <form asp-controller="Comments" asp-action="CreateComment" method="post">
+                    <input type="hidden" name="BlogID" value="@Model.BlogID" />
+                    @* <input type="hidden" name="UserID" value="@ViewBag.CurrentUserId" /> <!-- Replace with the current user's ID --> *@
+                    <input type="hidden" name="UserID" value="1" />
+
+                    <div class="form-group">
+                        <label for="CommentText">Comment:</label>
+                        <textarea class="form-control" name="CommentText" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Comment</button>
+                </form>
+
+
 
             </div>
-            <div class="ms-2 mt-4">
-                <h4>Comments</h4>
-                <div class="dropdown-divider"></div>
-                <div class="d-flex flex-row mb-3 mt-3">
-                    <div class="profile-circle mb-2">
-                        <img src="https://hips.hearstapps.com/hmg-prod/images/street-portrait-of-a-young-man-using-mobile-phone-royalty-free-image-1018047498-1564431457.jpg?crop=0.668xw:1.00xh;0.226xw,0&resize=640:*" alt="User Profile Image">
+            @foreach (var comment in ViewBag.Comments)
+            {
+                @* <div class="comment">
+                    <div class="comment-header">
+                        <span class="comment-author">@comment.User.Username</span>
+                        <span class="comment-date">@comment.CreatedDate</span>
                     </div>
-                    <div class="d-flex flex-column ms-3">
-                        <small class="text mb-2" style="font-weight:bold">John Doe</small>
-                        <small class="text">Ipsum suspendisse ultrices gravida dictum fusce ut placerat orci nulla.</small>
-                        <div class="d-flex flex-row mt-2">
-                            <div class="vote-icons d-flex flex-row">
-                                <div class="upvote">
-                                    <i class="fa-solid fa-circle-arrow-up"></i>
-                                    <lable>100</lable> @* upvote count *@
-
-                                </div>
-                                <div class="downvote">
-                                    <i class="fa-solid fa-circle-arrow-down"></i>
-                                    <lable>100</lable> @* downvote count *@
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-row me-2">
-                            <div class="Edit me-3 ms-3">
-                                @* Show edit button only login blogger_id == comment blogger_id  *@
-                                <a href="#">
-                                    <label>Edit</label>
-                                </a>
-                            </div>
-                            <div class="Delete">
-                                @* Show delete button only login blogger_id == comment blogger_id  *@
-                                <a href="#">
-                                    <label>Delete</label>
-                                </a>
-                            </div>
-                        </div>
-
-
+                    <div class="comment-body">
+                        @comment.CommentText
                     </div>
+                </div> *@
+
+
+                <div class="ms-2 mt-4">
+                    <h4>Comments</h4>
+                    <div class="dropdown-divider"></div>
+                    <div class="d-flex flex-row mb-3 mt-3">
+                        <div class="profile-circle mb-2">
+                            <img src="https://hips.hearstapps.com/hmg-prod/images/street-portrait-of-a-young-man-using-mobile-phone-royalty-free-image-1018047498-1564431457.jpg?crop=0.668xw:1.00xh;0.226xw,0&resize=640:*" alt="User Profile Image">
+                        </div>
+                        <div class="d-flex flex-column ms-3">
+                            <small class="text mb-2" style="font-weight:bold">@Model.User.Username</small>
+                            <small class="text">@comment.CommentText</small>
+                            <div class="d-flex flex-row mt-2">
+                                <div class="vote-icons d-flex flex-row">
+                                    <div class="upvote">
+                                        <i class="fa-solid fa-circle-arrow-up"></i>
+                                        <lable>100</lable> @* upvote count *@
+
+                                    </div>
+                                    <div class="downvote">
+                                        <i class="fa-solid fa-circle-arrow-down"></i>
+                                        <lable>100</lable> @* downvote count *@
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-row me-2">
+                                <div class="Edit me-3 ms-3">
+                                    @* Show edit button only login blogger_id == comment blogger_id  *@
+                                    <a href="#">
+                                        <label>Edit</label>
+                                    </a>
+                                </div>
+                                <div class="Delete">
+                                    @* Show delete button only login blogger_id == comment blogger_id  *@
+                                    <a href="#">
+                                        <label>Delete</label>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
                 </div>
-
-            </div>
+            }
         </div>
     </div>
 </body>

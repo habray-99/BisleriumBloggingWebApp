@@ -33,6 +33,15 @@ namespace BisleriumBloggingWebApp.Controllers
         // GET: Blogs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+
+            //fetching comments
+            var comments = await _context.Comments
+        .Include(c => c.User)
+        .Where(c => c.BlogID == id)
+        .ToListAsync();
+
+            ViewBag.Comments = comments;
+
             if (id == null)
             {
                 return NotFound();
@@ -70,6 +79,9 @@ namespace BisleriumBloggingWebApp.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["UserID"] = new SelectList(_context.Users, "UserID", "Email", blog.UserID);
+
+           
+
             return View(blog);
         }
 
