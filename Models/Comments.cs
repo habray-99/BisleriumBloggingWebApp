@@ -1,22 +1,25 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using BisleriumBloggingWebApp.Areas.Identity.Data;
 
-namespace BisleriumBloggingWebApp.Models
+namespace WebApplication6.Models
 {
     public class Comment
     {
         [Key]
-        public int CommentID { get; set; }
+        public int? CommentID { get; set; }
         [Required]
-        public int BlogID { get; set; }
+        public int? BlogID { get; set; }
         [Required]
-        public int UserID { get; set; }
+        public string? UserID { get; set; }
         [Required]
         public string? CommentText { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
         [ForeignKey("BlogID")]
         public virtual Blog? Blog { get; set; }
         [ForeignKey("UserID")]
-        public virtual User? User { get; set; }
+        public virtual CustomUser? User { get; set; }
+
+        public ICollection<CommentReaction>? CommentReactions { get; set; }
     }
 }

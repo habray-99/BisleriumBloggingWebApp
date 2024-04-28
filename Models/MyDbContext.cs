@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WebApplication6.Models;
 
 namespace BisleriumBloggingWebApp.Models
 {
@@ -95,6 +96,6 @@ namespace BisleriumBloggingWebApp.Models
                 .OnDelete(DeleteBehavior.Restrict);
         }
 
-        public DbSet<BisleriumBloggingWebApp.Models.User> User { get; set; } = default!;
+        //public DbSet<BisleriumBloggingWebApp.Models.k> User { get; set; } = default!;
     }
 }

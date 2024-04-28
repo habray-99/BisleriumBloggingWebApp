@@ -1,14 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BisleriumBloggingWebApp.Models
+namespace WebApplication6.Models
 {
     public class UserMetric
     {
         [Key]
         public int UserMetricID { get; set; }
         [Required]
-        public int UserID { get; set; }
+        public string? UserID { get; set; }
         public int TotalBlogPosts { get; set; }
         public int TotalUpvotes { get; set; }
         public int TotalDownvotes { get; set; }

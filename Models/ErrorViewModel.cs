@@ -1,4 +1,4 @@
-namespace BisleriumBloggingWebApp.Models
+namespace WebApplication6.Models
 {
     public class ErrorViewModel
     {

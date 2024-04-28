@@ -1,20 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using BisleriumBloggingWebApp.Areas.Identity.Data;
 
-namespace BisleriumBloggingWebApp.Models
+namespace WebApplication6.Models
 {
     public class Notification
     {
         [Key]
-        public int NotificationID { get; set; }
+        public int? NotificationID { get; set; }
         [Required]
-        public int UserID { get; set; }
+        public string? UserID { get; set; }
         [Required]
         public string? NotificationType { get; set; }
         [Required]
-        public int EntityID { get; set; }
-        public DateTime CreatedDate { get; set; }
-        [ForeignKey("UserID")]
-        public virtual User? User { get; set; }
+        public int? EntityID { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public virtual CustomUser? User { get; set; }
     }
 }

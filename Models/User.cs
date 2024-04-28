@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using BisleriumBloggingWebApp.Areas.Identity.Data;
 
-namespace BisleriumBloggingWebApp.Models
+namespace WebApplication6.Models
 {
 
     public class User
     {
-        [Key]
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         [Required]
         public string? Username { get; set; }
         [Required]
@@ -16,5 +16,7 @@ namespace BisleriumBloggingWebApp.Models
         public string? Password { get; set; }
         [Required]
         public string? Role { get; set; }
+
+        public CustomUser CustomUser { get; set; }
     }
 }
