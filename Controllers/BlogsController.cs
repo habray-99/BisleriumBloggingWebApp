@@ -45,6 +45,9 @@ namespace BisleriumBloggingWebApp.Controllers
             {
                 return NotFound();
             }
+            
+            var comments = _context.Comments.Where(c => c.BlogID == id).ToList();
+            ViewData["Comments"] = comments;
 
             return View(blog);
         }
