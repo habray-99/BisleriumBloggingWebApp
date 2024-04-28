@@ -1,7 +1,10 @@
 using BisleriumBloggingWebApp.Models;
 using Microsoft.EntityFrameworkCore;
+using BisleriumBloggingWebApp.Data;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("BisleriumBloggingWebAppContextConnection") ?? throw new InvalidOperationException("Connection string 'BisleriumBloggingWebAppContextConnection' not found.");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -17,6 +20,9 @@ builder.Services.AddSwaggerGen();
 var provider = builder.Services.BuildServiceProvider();
 var config = provider.GetRequiredService<IConfiguration>();
 builder.Services.AddDbContext<MyDbContext>(item => item.UseSqlServer(config.GetConnectionString("dbcs")));
+
+builder.Services.AddDefaultIdentity<CustomUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<BisleriumBloggingWebAppContext>();
+builder.Services.AddApplicationInsightsTelemetry();
 
 var app = builder.Build();
 
