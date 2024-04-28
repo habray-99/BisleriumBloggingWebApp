@@ -1,7 +1,7 @@
+using BisleriumBloggingWebApp.Areas.Identity.Data;
 using BisleriumBloggingWebApp.Models;
 using Microsoft.EntityFrameworkCore;
 using BisleriumBloggingWebApp.Data;
-using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("BisleriumBloggingWebAppContextConnection") ?? throw new InvalidOperationException("Connection string 'BisleriumBloggingWebAppContextConnection' not found.");
